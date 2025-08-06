@@ -14,3 +14,17 @@ class LoginPageLocators:
 
     LOGIN_EMAIL_INPUT = (By.NAME, "login-username")
     LOGIN_PASSWORD_INPUT = (By.NAME, "login-password")
+
+
+class ProductPageLocators:
+    ADD_TO_BASKET_BTN = (By.CLASS_NAME, "btn-add-to-basket")
+    PRODUCT_NAME = (By.CSS_SELECTOR, "div.product_main h1")
+    PRODUCT_PRICE = (By.CSS_SELECTOR, "div.product_main p.price_color")
+    PRODUCT_NAME_IN_SUCCESFUL_ADDING_NOTIFICATION = (
+        By.CSS_SELECTOR,
+        ".alert-success:nth-of-type(1) strong",
+    )
+    PRODUCT_PRICE_IN_SUCCESFUL_ADDING_NOTIFICATION = (
+        By.CSS_SELECTOR,
+        ".alert-info strong",
+    )
