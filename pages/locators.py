@@ -28,3 +28,8 @@ class ProductPageLocators:
         By.CSS_SELECTOR,
         ".alert-info strong",
     )
+
+    SUCCESS_MESSAGE = (
+        By.CSS_SELECTOR,
+        ".alert-success:nth-of-type(1)",
+    )
