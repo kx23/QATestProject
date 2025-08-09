@@ -5,6 +5,35 @@ import pytest
 import time
 
 
+@pytest.mark.user_add_to_basket
+class TestUserAddToBasketFromProductPage:
+
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+        login_page = LoginPage(browser=browser, url=link)
+        login_page.open()
+        email = str(time.time()) + "@fakemail.org"
+        password = "12312ddsaSDSD"
+        login_page.register_new_user(email=email, password=password)
+        login_page.should_be_authorized_user()
+        print("\nnew user is registered")
+
+    def test_user_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+        page = ProductPage(browser=browser, url=link)
+        page.open()
+        page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
+        page = ProductPage(browser=browser, url=link)
+        page.open()
+        page.add_to_basket()
+        page.should_be_correct_price_in_notification()
+        page.should_be_correct_product_name_in_notification()
+
+
 @pytest.mark.parametrize(
     "link",
     [
