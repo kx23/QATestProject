@@ -29,3 +29,24 @@ class LoginPage(BasePage):
         assert self.is_element_present(
             *LoginPageLocators.REGISTRATION_PASSWORD_REPEAT_INPUT
         ), "Repeat password input not found"
+
+    def register_new_user(self, email, password):
+        email_input = self.browser.find_element(
+            *LoginPageLocators.REGISTRATION_EMAIL_INPUT
+        )
+        email_input.send_keys(email)
+
+        pass1_input = self.browser.find_element(
+            *LoginPageLocators.REGISTRATION_PASSWORD_INPUT
+        )
+        pass1_input.send_keys(password)
+
+        pass2_input = self.browser.find_element(
+            *LoginPageLocators.REGISTRATION_PASSWORD_REPEAT_INPUT
+        )
+        pass2_input.send_keys(password)
+
+        registration_button = self.browser.find_element(
+            *LoginPageLocators.REGISTRATION_BUTTON
+        )
+        registration_button.click()
